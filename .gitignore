@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Virtual environment
+venv/
+
+# Database files
+*.db
+
+# VS Code settings (optional)
+.vscode/
