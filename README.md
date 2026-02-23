@@ -8,7 +8,7 @@ The pipeline:
  `HIPPER_PARK ROAD BRIDGE_E_202312`
 - Stores the data in a file-based SQLite database
 - Uses a simplified star-schema style design 
-- Runs from a single command
+- Runs from a single command after setup (`python main.py`)
 
 Selected parameters:
 - Conductivity
@@ -20,6 +20,7 @@ Selected parameters:
 
 ## Project Structure
 
+```text
 hydrology_pipeline/
 |-- api_client.py          # Extracts data from Hydrology API
 |-- database.py            # SQLite schema creation and inserts
@@ -28,17 +29,20 @@ hydrology_pipeline/
 |-- README.md              # Project documentation
 |-- .gitignore             # Ignored files
 |-- data/
-|   |-- hydrology.db       # SQLite database file (created after pipeline run)
+|   |-- .gitkeep           # Placeholder to keep folder in Git
+|   |-- hydrology.db       # SQLite database file (created after pipeline run, ignored)
 |-- dev/                   # Exploratory scripts (not part of pipeline)
 |   |-- api_exploration.py # Exploratory API script
 |   |-- check_db.py        # Quick database inspection script
-|   |-- test_api_connection.py
+|   |-- check_api_connection.py
 |-- tests/
 |   |-- test_api.py
 |   |-- test_database.py
+```
 
 Note:
 - Local environment folders/files such as `venv/`, `__pycache__/`, `.pytest_cache/`, and `*.db` are ignored by `.gitignore`.
+- The `data/` folder is kept in the repository using `data/.gitkeep`; `data/hydrology.db` is created at runtime.
 
 ## Installation (Windows / PowerShell)
 
@@ -81,8 +85,7 @@ What it does:
 - Creates the SQLite database and tables
 - Retrieves station metadata
 - Retrieves the latest 10 readings for each selected parameter
-- Prevents duplicate measurement rows on repeated runs (for the 
-  same reading timestamp and parameter).
+- Prevents duplicate measurement rows on repeated runs (for the same reading timestamp and parameter)
 - Loads station and measurement data into the database
 
 Database output file:
@@ -148,9 +151,8 @@ Notes:
 
 - The project is designed to be interview-task focused.
 - The schema naming follows the task's simplified wording (station as the central table).
-- Deduplication is handled at the SQLite layer using a composite unique constraint and 
-  INSERT OR IGNORE, which is more reliable than Python-only deduplication.
-- The `data/` folder must exist before the first run so SQLite can create `data/hydrology.db`.
+- Deduplication is handled at the SQLite layer using a composite unique constraint and `INSERT OR IGNORE`, which is more reliable than Python-only deduplication.
+- The repository includes `data/.gitkeep` so the `data/` folder exists on clone and SQLite can create `data/hydrology.db` on first run.
 
 ## API Reference
 
