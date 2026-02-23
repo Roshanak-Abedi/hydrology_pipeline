@@ -101,7 +101,7 @@ This ensures the returned rows are the most recent readings (newest first).
 
 This project follows the assignment's simplified schema approach using two tables.
 
-### `stations` (task-oriented central/fact-like table)
+### `stations` (fact table)
 Stores station metadata.
 
 Columns:
@@ -111,7 +111,7 @@ Columns:
 - `latitude`
 - `longitude`
 
-### `measurements` (related measurement table)
+### `measurements` (measurement/dimension table)
 Stores time-series readings linked to a station.
 
 Columns:
