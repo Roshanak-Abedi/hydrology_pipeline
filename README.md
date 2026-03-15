@@ -149,7 +149,6 @@ Notes:
 
 ## Notes / Assumptions
 
-- The project is designed to be interview-task focused.
 - The schema naming follows the task's simplified wording (station as the central table).
 - Deduplication is handled at the SQLite layer using a composite unique constraint and `INSERT OR IGNORE`, which is more reliable than Python-only deduplication.
 - The repository includes `data/.gitkeep` so the `data/` folder exists on clone and SQLite can create `data/hydrology.db` on first run.
